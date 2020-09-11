@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<script>
+			function time_convert(num) {
+				var minutes = Math.floor(num / 60);
+				var seconds = num % 60;
+				let secondstr = seconds == 1 ? " second" : " seconds";
+				let minutestr = minutes == 1 ? " minute" : " minutes";
+				if (minutes == 0) return seconds + secondstr;
+				if (seconds == 0) return minutes + minutestr;
+				return minutes + minutestr + " and " + seconds + secondstr;
+			}
+			function updateTextInput(val) {
+				document.getElementById("textInput").value = time_convert(val);
+			}
+		</script>
+		<style>
+			.slider {
+				-webkit-appearance: none;
+				width: 20%;
+				height: 12px;
+				background: #d3d3d3;
+				outline: none;
+				opacity: 0.7;
+				-webkit-transition: 0.2s;
+				transition: opacity 0.2s;
+			}
+
+			.slider:hover {
+				opacity: 1;
+			}
+
+			.slider::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 12px;
+				height: 12px;
+				background: #4caf50;
+				cursor: pointer;
+			}
+
+			.slider::-moz-range-thumb {
+				width: 12px;
+				height: 12px;
+				background: #4caf50;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Hello Za3zou3a</h2>
+		<form method="GET" action="/gen">
+			<label for="maps">Choose a map:</label>
+			<select name="map" id="map">
+				<option value="world">World</option>
+				<option value="famous-places">Famous Places</option>
+				<option value="5cfda2c9bc79e16dd866104d">I Saw The Sign</option>
+			</select>
+
+			<div class="slidecontainer">
+				<label for="maps">Choose round duration:</label>
+				<input
+					type="range"
+					name="timelimit"
+					min="10"
+					max="600"
+					step="10"
+					value="90"
+					class="slider"
+					onmousemove="updateTextInput(this.value);"
+				/>
+				<input type="text" id="textInput" value="1 minute and 30 seconds" />
+			</div>
+			<input type="submit" value="Play" />
+		</form>
+	</body>
+</html>
